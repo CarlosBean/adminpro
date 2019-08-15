@@ -1,0 +1,15 @@
+<h5>{{ title }}</h5>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <button class="btn btn-primary" type="button" (click)="changeProgress('sum')">
+            <i class="mdi mdi-plus"></i>
+        </button>
+    </div>
+    <input #txtProgress type="number" min="0" max="100" class="form-control" [(ngModel)]="progress"
+        (ngModelChange)="updateValue($event)">
+    <div class="input-group-prepend">
+        <button class="btn btn-primary" type="button" (click)="changeProgress('sub')">
+            <i class="mdi mdi-minus"></i>
+        </button>
+    </div>
+</div>

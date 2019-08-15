@@ -1,1 +1,35 @@
-<p>progress works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Progress Bar</h5>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" [style.width.%]="bar1"
+                        [attr.ariaValuenow]="bar1" [attr.ariaValuemin]="0" [attr.ariaValuemax]="100"></div>
+                </div>
+                <br>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="bar2"
+                        [attr.ariaValuenow]="bar2" [attr.ariaValuemin]="0" [attr.ariaValuemax]="100"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-booster [progress]="bar1" title="Blue Progress" (output)="bar1 = $event"></app-booster>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <app-booster [progress]="bar2" title="Green Progress" (output)="bar2 = $event"></app-booster>
+            </div>
+        </div>
+    </div>
+</div>
