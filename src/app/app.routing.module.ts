@@ -1,6 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
+import { NopagefoundComponent } from './shared/layouts/nopagefound/nopagefound.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 

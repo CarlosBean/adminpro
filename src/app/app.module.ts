@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
+import { NopagefoundComponent } from './shared/layouts/nopagefound/nopagefound.component';
 import { RegisterComponent } from './login/register.component';
 
 @NgModule({
