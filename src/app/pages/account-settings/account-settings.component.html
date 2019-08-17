@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="r-panel-body">
+                    <ul id="themecolors" class="m-t-20">
+                        <p><b>Con el sidebar claro</b></p>
+                        <li *ngFor="let theme of themes" (click)="changeTheme(theme, $event)">
+                            <a [attr.dataTheme]="theme" [ngClass]="['selector', theme + '-theme']"></a>
+                        </li>
+
+                        <p class="d-block m-t-30"><b>Con el sidebar oscuro</b></p>
+                        <li *ngFor="let theme of darkThemes" (click)="changeTheme(theme, $event)">
+                            <a [attr.dataTheme]="theme" [ngClass]="['selector', theme + '-theme']"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
