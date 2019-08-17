@@ -6,6 +6,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { PagesRoutingModule } from './pages.routing.module';
 import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromisesComponent } from './promises/promises.component';
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
         Graphics1Component,
         ProgressComponent,
         AccountSettingsComponent,
-        PagesComponent
+        PagesComponent,
+        PromisesComponent
     ],
     imports: [
         SharedModule,
