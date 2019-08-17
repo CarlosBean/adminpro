@@ -8,6 +8,7 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { BoosterComponent } from './components/booster/booster.component';
 import { DonutGraphicComponent } from './components/donut-graphic/donut-graphic.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { DonutGraphicComponent } from './components/donut-graphic/donut-graphic.
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        ChartsModule
+        ChartsModule,
+        RouterModule
     ],
     exports: [
         CommonModule,
@@ -32,7 +34,8 @@ import { DonutGraphicComponent } from './components/donut-graphic/donut-graphic.
         SidebarComponent,
         BoosterComponent,
         ChartsModule,
-        DonutGraphicComponent
+        DonutGraphicComponent,
+        RouterModule
     ],
     providers: [],
 })
