@@ -14,6 +14,7 @@ export class SidebarService {
         { title: 'progress bar', url: '/progress' },
         { title: 'graphics', url: '/graphics1' },
         { title: 'promises', url: '/promises' },
+        { title: 'rxjs', url: '/rxjs' },
       ]
     }
   ];
