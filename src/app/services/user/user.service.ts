@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { User, IUser } from 'src/app/models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from 'src/app/app.config';
 import { Observable } from 'rxjs';
@@ -7,14 +7,17 @@ import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Account } from 'src/app/models/account.model';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
+  helper = new JwtHelperService();
   urlResource = `${API_URL}/user`;
   token: string;
+  user: IUser;
 
   constructor(public http: HttpClient, public router: Router) {
     this.loadStorage();
@@ -25,14 +28,26 @@ export class UserService {
   }
 
   loadStorage() {
-    this.token = localStorage.getItem('token') || '';
-    console.log('initialized token', this.token);
+    if (localStorage.getItem('token')) {
+      this.token = localStorage.getItem('token');
+      this.user = this.helper.decodeToken(this.token).user;
+    }
   }
 
-  saveStorage(id: string, token: string) {
-    localStorage.setItem('id', id);
+  saveStorage(token: string) {
     localStorage.setItem('token', token);
     this.token = token;
+    this.patchUser(this.helper.decodeToken(token).user);
+  }
+
+  patchUser(data: IUser) {
+    this.user = this.user || new User('', '');
+
+    this.user.name = data.name;
+    this.user.email = data.email;
+    this.user.google = data.google;
+    this.user.img = data.img;
+    this.user._id = data._id;
   }
 
   logout() {
@@ -44,7 +59,7 @@ export class UserService {
   googleLogin(token: string): Observable<any> {
     const url = API_URL + '/login/google';
     return this.http.post(url, { token }).pipe(map((res: any) => {
-      this.saveStorage(res.data.id, res.data.token);
+      this.saveStorage(res.data.token);
       return true;
     }));
   }
@@ -55,7 +70,7 @@ export class UserService {
 
     const url = API_URL + '/login';
     return this.http.post(url, account).pipe(map((res: any) => {
-      this.saveStorage(res.data.id, res.data.token);
+      this.saveStorage(res.data.token);
       return true;
     }));
   }
@@ -63,6 +78,15 @@ export class UserService {
   create(user: User): Observable<any> {
     return this.http.post(this.urlResource, user).pipe(map((res: any) => {
       Swal.fire(res.message, res.data.email, 'success');
+      return res;
+    }));
+  }
+
+  update(idUser: any, user: User) {
+    const url = `${this.urlResource}/${idUser}?token=${this.token}`;
+    return this.http.put(url, user).pipe(map((res: any) => {
+      this.saveStorage(res.data.token);
+      Swal.fire(res.message, 'Your user has been updated successfully', 'success');
       return res;
     }));
   }
