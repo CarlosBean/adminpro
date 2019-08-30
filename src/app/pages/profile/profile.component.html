@@ -1,0 +1,64 @@
+<div class="row animated fadeIn">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">User Profile</h4>
+                <h6 class="card-subtitle">made with bootstrap elements</h6>
+                <form ngNativeValidate [formGroup]="profileForm" (ngSubmit)="update()" class="form p-t-20">
+                    <div class="form-group">
+                        <label for="exampleInputuname">User Name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input formControlName="name" name="name" type="text" class="form-control"
+                                id="exampleInputuname" placeholder="Username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input formControlName="email" name="email" type="email" class="form-control"
+                                id="exampleInputEmail1" placeholder="Enter email" required>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="pwd1">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                            <input type="password" class="form-control" id="pwd1" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd2">Confirm Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                            <input type="password" class="form-control" id="pwd2" placeholder="Enter email">
+                        </div>
+                    </div> -->
+
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body" align="center">
+                <h4 class="card-title">User Picture</h4>
+                <h6 class="card-subtitle">made with bootstrap elements</h6>
+
+                <img *ngIf="!profileImage" [src]="user.img | image" alt="profile-img" class="w-150">
+                <img *ngIf="profileImage" [src]="profileImageUrl" alt="profile-img" class="w-150">
+
+                <input #file (change)="getImage($event.target.files[0])" accept="image/*" type="file"
+                    name="profileImage" id="profileImage">
+                <br>
+                <br>
+                <button (click)="updateImage()" type="button"
+                    class="btn btn-block btn-success waves-effect waves-light m-r-10">Update
+                    Picture</button>
+            </div>
+        </div>
+    </div>
+</div>
