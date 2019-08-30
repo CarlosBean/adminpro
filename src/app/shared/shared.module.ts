@@ -9,6 +9,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { BoosterComponent } from './components/booster/booster.component';
 import { DonutGraphicComponent } from './components/donut-graphic/donut-graphic.component';
 import { RouterModule } from '@angular/router';
+import { ImagePipe } from './pipes/image/image.pipe';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { RouterModule } from '@angular/router';
         HeaderComponent,
         SidebarComponent,
         BoosterComponent,
-        DonutGraphicComponent
+        DonutGraphicComponent,
+        ImagePipe
     ],
     imports: [
         CommonModule,
@@ -35,7 +37,8 @@ import { RouterModule } from '@angular/router';
         BoosterComponent,
         ChartsModule,
         DonutGraphicComponent,
-        RouterModule
+        RouterModule,
+        ImagePipe
     ],
     providers: [],
 })
