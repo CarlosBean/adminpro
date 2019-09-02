@@ -9,6 +9,7 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../services';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
     {
@@ -24,6 +25,11 @@ const routes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: { title: 'Rxjs' } },
             { path: 'profile', component: ProfileComponent, data: { title: 'Profile' } },
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+
+            // management
+            { path: 'users', component: UsersComponent, data: { title: 'Users' } },
+            // { path: 'doctors', component: UsersComponent, data: { title: 'Doctors' } },
+            // { path: 'hospitals', component: UsersComponent, data: { title: 'Hospitals' } },
         ]
     }
 ];
