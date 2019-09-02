@@ -1,3 +1,4 @@
+export { ModalUploadService } from './modal-upload.service';
 export { UploadFileService } from './upload-file.service';
 export { SettingsService } from './settings.service';
 export { SharedService } from './shared.service';
