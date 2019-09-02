@@ -12,7 +12,6 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     if (this.userService.isLogged()) {
-      console.log('Passed guard');
       return true;
     } else {
       console.log('Blocked by guard');
