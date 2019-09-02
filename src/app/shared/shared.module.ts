@@ -10,6 +10,7 @@ import { BoosterComponent } from './components/booster/booster.component';
 import { DonutGraphicComponent } from './components/donut-graphic/donut-graphic.component';
 import { RouterModule } from '@angular/router';
 import { ImagePipe } from './pipes/image/image.pipe';
+import { ModalUploadComponent } from './components/modal-upload/modal-upload.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { ImagePipe } from './pipes/image/image.pipe';
         SidebarComponent,
         BoosterComponent,
         DonutGraphicComponent,
-        ImagePipe
+        ImagePipe,
+        ModalUploadComponent
     ],
     imports: [
         CommonModule,
@@ -38,7 +40,8 @@ import { ImagePipe } from './pipes/image/image.pipe';
         ChartsModule,
         DonutGraphicComponent,
         RouterModule,
-        ImagePipe
+        ImagePipe,
+        ModalUploadComponent
     ],
     providers: [],
 })
