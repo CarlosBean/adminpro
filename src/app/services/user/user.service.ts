@@ -42,7 +42,6 @@ export class UserService {
 
   patchUser(data: IUser) {
     this.user = this.user || new User('', '');
-
     this.user.name = data.name;
     this.user.email = data.email;
     this.user.google = data.google;
@@ -82,12 +81,29 @@ export class UserService {
     }));
   }
 
-  update(idUser: any, user: User) {
-    const url = `${this.urlResource}/${idUser}?token=${this.token}`;
+  update(user: User) {
+    const url = `${this.urlResource}/${user._id}?token=${this.token}`;
     return this.http.put(url, user).pipe(map((res: any) => {
-      this.saveStorage(res.data.token);
+      if (user._id === this.user._id) {
+        this.saveStorage(res.data.token);
+      }
       Swal.fire(res.message, 'Your user has been updated successfully', 'success');
       return res;
     }));
+  }
+
+  getAll(from = 0) {
+    const url = `${this.urlResource}?from=${from}`;
+    return this.http.get(url).pipe(map((res: any) => res));
+  }
+
+  searchAll(text: string) {
+    const url = `${API_URL}/search/collection/users/${text}`;
+    return this.http.get(url).pipe(map((res: any) => res));
+  }
+
+  delete(id: string): Observable<any> {
+    const url = `${this.urlResource}/${id}?token=${this.token}`;
+    return this.http.delete(url).pipe(map((res: any) => res));
   }
 }
