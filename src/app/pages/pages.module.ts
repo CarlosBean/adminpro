@@ -10,6 +10,9 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctors/doctor.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +25,9 @@ import { UsersComponent } from './users/users.component';
         RxjsComponent,
         ProfileComponent,
         UsersComponent,
+        HospitalsComponent,
+        DoctorsComponent,
+        DoctorComponent
     ],
     imports: [
         SharedModule,
