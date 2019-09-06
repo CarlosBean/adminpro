@@ -27,3 +27,8 @@
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 9999;
 }
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
