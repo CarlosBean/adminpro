@@ -1,3 +1,5 @@
+export { DoctorService } from './doctor/doctor.service';
+export { HospitalService } from './hospital/hospital.service';
 export { ModalUploadService } from './modal-upload.service';
 export { UploadFileService } from './upload-file.service';
 export { SettingsService } from './settings.service';
