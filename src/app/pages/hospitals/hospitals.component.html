@@ -1,0 +1,84 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input (keyup.enter)="searchHospital($event.target.value)" type="text" name="search" id="search"
+                    class="form-control" placeholder="Search an hospital ...">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!loading" class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="flex-between">
+                    <h4 class="card-title">Registered Hospitals ( <small>{{ totalHospitals }}</small> )</h4>
+                    <button (click)="openSaveModal()" type="button" class="btn btn-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Create a hospital
+                    </button>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitals; let i = index">
+                            <td class="w-70">
+                                <img (click)="openModal(hospital._id, hospital.img)" class="w-50 img-circle pointer"
+                                    [src]="hospital.img | image:'hospitals'" alt="avatar">
+                            </td>
+
+                            <td>
+                                <input [(ngModel)]="hospital.name" type="text" class="form-control" name="name"
+                                    id="name">
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="">
+                                    <button (click)="updateHospital(hospital)" type="button" class="btn btn-success">
+                                        <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                                        Edit
+                                    </button>
+                                    <button (click)="deleteHospital(hospital._id)" type="button" class="btn btn-danger">
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <div class="btn-group" role="group" aria-label="">
+                        <button (click)="paginate(-5)" type="button" class="btn btn-secondary">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Prev
+                        </button>
+                        <button (click)="paginate(5)" type="button" class="btn btn-secondary">
+                            Next
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="loading" class="row animated fadeIn">
+    <div class="col-12 text-center">
+        <div class="alert alert-warning" role="alert">
+            <strong>Loading</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x" aria-hidden="true"></i>
+            <br>
+            <span>Waiting please</span>
+        </div>
+    </div>
+</div>
