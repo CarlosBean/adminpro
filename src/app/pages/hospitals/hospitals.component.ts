@@ -54,7 +54,7 @@ export class HospitalsComponent implements OnInit {
     this.loading = true;
     this.hospitalService.searchAll(text).subscribe(res => {
       this.loading = false;
-      this.hospitals = res.data.hospitals;
+      this.hospitals = res.data;
     });
   }
 

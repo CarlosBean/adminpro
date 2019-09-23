@@ -27,7 +27,7 @@ export class DoctorsComponent implements OnInit {
 
     this.doctorService.searchAll(text).subscribe(res => {
       console.log(res);
-      this.doctors = res.data.doctors;
+      this.doctors = res.data;
     });
   }
 

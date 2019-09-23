@@ -57,7 +57,7 @@ export class UsersComponent implements OnInit {
     this.loading = true;
     this.userService.searchAll(text).subscribe(res => {
       this.loading = false;
-      this.users = res.data.users;
+      this.users = res.data;
     });
   }
 
