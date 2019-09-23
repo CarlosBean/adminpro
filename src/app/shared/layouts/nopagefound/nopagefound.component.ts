@@ -9,6 +9,8 @@ declare function init_plugins();
 })
 export class NopagefoundComponent implements OnInit {
 
+  currentYear = new Date().getFullYear();
+
   constructor() { }
 
   ngOnInit() {
