@@ -14,14 +14,14 @@ export class SidebarService {
         { title: 'progress bar', url: '/progress' },
         { title: 'graphics', url: '/graphics1' },
         { title: 'promises', url: '/promises' },
-        { title: 'rxjs', url: '/rxjs' },
+        { title: 'rxjs', url: '/rxjs', auth: 'ADMIN_ROLE' },
       ]
     },
     {
       title: 'management',
       icon: 'mdi mdi-folder-lock-open',
       submenu: [
-        { title: 'users', url: '/users' },
+        { title: 'users', url: '/users', auth: 'ADMIN_ROLE' },
         { title: 'doctors', url: '/doctors' },
         { title: 'hospitals', url: '/hospitals' },
       ]
