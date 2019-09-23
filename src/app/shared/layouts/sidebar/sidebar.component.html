@@ -25,13 +25,14 @@
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                         <i [class]="menu.icon"></i>
                         <span class="hide-menu">
-                            {{ menu.title | titlecase }} <span
-                                class="label label-rouded label-themecolor pull-right">4</span>
+                            {{ menu.title | titlecase }}
+                            <!--  <span class="label label-rouded label-themecolor pull-right">4</span> -->
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li *ngFor="let submenu of menu.submenu">
-                            <a routerLinkActive="active" [routerLink]="submenu.url">{{ submenu.title | titlecase }}</a>
+                            <a *appHasRole="submenu.auth || ['USER_ROLE', 'ADMIN_ROLE']" routerLinkActive="active"
+                                [routerLink]="submenu.url">{{ submenu.title | titlecase }}</a>
                         </li>
                     </ul>
                 </li>

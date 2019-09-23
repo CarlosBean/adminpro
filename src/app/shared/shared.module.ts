@@ -11,6 +11,7 @@ import { DonutGraphicComponent } from './components/donut-graphic/donut-graphic.
 import { RouterModule } from '@angular/router';
 import { ImagePipe } from './pipes/image/image.pipe';
 import { ModalUploadComponent } from './components/modal-upload/modal-upload.component';
+import { HasRoleDirective } from './directives/has-role.directive';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { ModalUploadComponent } from './components/modal-upload/modal-upload.com
         BoosterComponent,
         DonutGraphicComponent,
         ImagePipe,
-        ModalUploadComponent
+        ModalUploadComponent,
+        HasRoleDirective
     ],
     imports: [
         CommonModule,
