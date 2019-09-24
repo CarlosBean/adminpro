@@ -12,24 +12,25 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private accountService: AccountService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(req).pipe(catchError(this.handleError));
-    }
+        return next.handle(req).pipe(
+            catchError((err: any) => {
+                switch (err.status) {
+                    case 401:
+                        this.accountService.logout();
+                        // location.reload(true);
+                        break;
+                    case 400:
+                    case 500:
+                        Swal.fire(`Error ${err.status}`, err.error.message, 'error');
+                        break;
+                    default:
+                        Swal.fire('Unknown Error', 'Has appeared an unknown error on system.', 'error');
+                        break;
+                }
 
-    handleError(err: HttpErrorResponse) {
-        switch (err.status) {
-            case 401:
-                this.accountService.logout();
-                break;
-            case 400:
-            case 500:
-                Swal.fire(`Error ${err.status}`, err.error.message, 'error');
-                break;
-            default:
-                Swal.fire('Unknown Error', 'Has appeared an unknown error on system.', 'error');
-                break;
-        }
-
-        const error = err.message;
-        return throwError(err);
+                const error = err.error.message || err.statusText;
+                return throwError(error);
+            })
+        );
     }
 }
