@@ -24,7 +24,6 @@ export class HasRoleDirective {
   private updateView(): void {
     const hasAnyAuthority = this.accountService.hasAnyAuthority(this.authorities);
     this.viewContainerRef.clear();
-    console.log('ahhh directive', hasAnyAuthority);
     if (hasAnyAuthority) {
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     }

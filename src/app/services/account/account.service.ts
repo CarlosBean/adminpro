@@ -52,12 +52,10 @@ export class AccountService {
     localStorage.setItem('token', token);
     this.token = token;
     this.patchUser(this.helper.decodeToken(token).user);
-    console.log('patched user ', this.user);
     this.authenticationState.next(this.user);
   }
 
   patchUser(data: IUser) {
-    console.log('data token', data);
     this.user = this.user || new User('', '');
     this.user.name = data.name;
     this.user.email = data.email;

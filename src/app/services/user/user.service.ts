@@ -34,8 +34,6 @@ export class UserService {
   }
 
   update(user: User) {
-    console.log('request user id', user._id);
-    console.log('storaged id', this.accountService.user._id);
     const url = `${this.urlResource}/${user._id}`;
     return this.http.put(url, user).pipe(map((res: any) => {
       if (user._id === this.accountService.user._id) {
