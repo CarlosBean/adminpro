@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../services';
+import { AccountService } from '../services';
 
 declare function init_plugins();
 declare const gapi: any;
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     public ngZone: NgZone,
-    public userService: UserService
+    public accountService: AccountService
   ) { }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
       const token = googleUser.getAuthResponse().id_token;
 
       // added ngzone as temporal solution for warning: Navigation triggered outside Angular zone
-      this.userService.googleLogin(token)
+      this.accountService.googleLogin(token)
         .subscribe(() => this.ngZone.run(() => this.router.navigate(['/dashboard'])).then());
     });
   }
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.userService.login(this.form.value)
+    this.accountService.login(this.form.value)
       .subscribe(() => this.router.navigate(['/dashboard']));
   }
 }

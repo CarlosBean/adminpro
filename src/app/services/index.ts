@@ -1,4 +1,4 @@
-import { AccountService } from './account/account.service';
+export { AccountService } from './account/account.service';
 
 export { VerifyTokenGuard } from './guards/verify-token.guard';
 

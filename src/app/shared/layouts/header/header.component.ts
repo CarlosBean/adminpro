@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/services';
+import { AccountService } from 'src/app/services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,15 +9,15 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  user = this.userService.user;
+  user = this.accountService.user;
 
-  constructor(private userService: UserService, public router: Router) { }
+  constructor(private accountService: AccountService, public router: Router) { }
 
   ngOnInit() {
   }
 
   logout() {
-    this.userService.logout();
+    this.accountService.logout();
   }
 
   searchText(text: string) {

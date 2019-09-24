@@ -1,5 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { UserService } from 'src/app/services';
+import { AccountService } from 'src/app/services';
 
 @Directive({
   selector: '[appHasRole]'
@@ -8,7 +8,7 @@ export class HasRoleDirective {
   private authorities: string[];
 
   constructor(
-    private accountService: UserService,
+    private accountService: AccountService,
     private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef
   ) { }
@@ -24,6 +24,7 @@ export class HasRoleDirective {
   private updateView(): void {
     const hasAnyAuthority = this.accountService.hasAnyAuthority(this.authorities);
     this.viewContainerRef.clear();
+    console.log('ahhh directive', hasAnyAuthority);
     if (hasAnyAuthority) {
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     }

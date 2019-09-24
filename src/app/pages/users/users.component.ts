@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User, IUser } from 'src/app/models/user.model';
-import { UserService, ModalUploadService } from 'src/app/services';
+import { UserService, ModalUploadService, AccountService } from 'src/app/services';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,7 +15,11 @@ export class UsersComponent implements OnInit {
   from = 0;
   loading: boolean;
 
-  constructor(private userService: UserService, public modalService: ModalUploadService) { }
+  constructor(
+    private userService: UserService,
+    public modalService: ModalUploadService,
+    public accountService: AccountService
+  ) { }
 
   ngOnInit() {
     this.getUsers();
@@ -62,7 +66,7 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    if (id === this.userService.user._id) {
+    if (id === this.accountService.user._id) {
       Swal.fire('Invalid Operation', `You can't delete to yourself`, 'error');
       return;
     }

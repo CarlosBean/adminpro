@@ -19,13 +19,10 @@ export class ErrorInterceptor implements HttpInterceptor {
         switch (err.status) {
             case 401:
                 this.accountService.logout();
-                location.reload(true);
                 break;
             case 400:
-                Swal.fire('Client Error', err.message, 'error');
-                break;
             case 500:
-                Swal.fire('Server Error', err.message, 'error');
+                Swal.fire(`Error ${err.status}`, err.error.message, 'error');
                 break;
             default:
                 Swal.fire('Unknown Error', 'Has appeared an unknown error on system.', 'error');
@@ -33,6 +30,6 @@ export class ErrorInterceptor implements HttpInterceptor {
         }
 
         const error = err.message;
-        return throwError(error);
+        return throwError(err);
     }
 }

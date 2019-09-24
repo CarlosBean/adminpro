@@ -5,7 +5,6 @@ import { API_URL } from 'src/app/app.config';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,18 +13,17 @@ export class HospitalService {
 
   urlResource = `${API_URL}/hospital`;
 
-  constructor(public http: HttpClient, public userService: UserService) { }
+  constructor(public http: HttpClient) { }
 
   create(hospital: IHospital): Observable<any> {
-    const url = `${this.urlResource}?token=${this.userService.token}`;
-    return this.http.post(url, hospital).pipe(map((res: any) => {
+    return this.http.post(this.urlResource, hospital).pipe(map((res: any) => {
       Swal.fire(res.message, res.data.email, 'success');
       return res;
     }));
   }
 
   update(hospital: IHospital) {
-    const url = `${this.urlResource}/${hospital._id}?token=${this.userService.token}`;
+    const url = `${this.urlResource}/${hospital._id}`;
     return this.http.put(url, hospital).pipe(map((res: any) => {
       Swal.fire(res.message, 'Hospital has been updated successfully', 'success');
       return res;
@@ -48,7 +46,7 @@ export class HospitalService {
   }
 
   delete(id: string): Observable<any> {
-    const url = `${this.urlResource}/${id}?token=${this.userService.token}`;
+    const url = `${this.urlResource}/${id}`;
     return this.http.delete(url).pipe(map((res: any) => res));
   }
 }

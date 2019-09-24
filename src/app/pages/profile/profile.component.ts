@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services';
+import { UserService, AccountService } from 'src/app/services';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UploadFileService } from 'src/app/services';
 
@@ -22,8 +22,13 @@ export class ProfileComponent implements OnInit {
     email: ['', Validators.required]
   });
 
-  constructor(public fb: FormBuilder, public userService: UserService, public fileService: UploadFileService) {
-    this.user = this.userService.user;
+  constructor(
+    public fb: FormBuilder,
+    public userService: UserService,
+    public fileService: UploadFileService,
+    public accountService: AccountService
+  ) {
+    this.user = this.accountService.user;
   }
 
   ngOnInit() {

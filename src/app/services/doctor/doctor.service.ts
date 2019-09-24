@@ -3,7 +3,6 @@ import { API_URL } from 'src/app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { UserService } from '../user/user.service';
 import { IDoctor } from 'src/app/models/doctor.model';
 import Swal from 'sweetalert2';
 
@@ -14,7 +13,7 @@ export class DoctorService {
 
   urlResource = `${API_URL}/doctor`;
 
-  constructor(public http: HttpClient, public userService: UserService) { }
+  constructor(public http: HttpClient) { }
 
   getAll(from = 0): Observable<any> {
     const url = `${this.urlResource}?from=${from}`;
@@ -27,7 +26,7 @@ export class DoctorService {
   }
 
   create(doctor: IDoctor): Observable<any> {
-    const url = `${this.urlResource}?token=${this.userService.token}`;
+    const url = `${this.urlResource}`;
     return this.http.post(url, doctor).pipe(map((res: any) => {
       Swal.fire(res.message, res.data.email, 'success');
       return res;
@@ -35,7 +34,7 @@ export class DoctorService {
   }
 
   update(doctor: IDoctor) {
-    const url = `${this.urlResource}/${doctor._id}?token=${this.userService.token}`;
+    const url = `${this.urlResource}/${doctor._id}`;
     return this.http.put(url, doctor).pipe(map((res: any) => {
       Swal.fire(res.message, 'Doctor has been updated successfully', 'success');
       return res;
@@ -48,7 +47,7 @@ export class DoctorService {
   }
 
   delete(id: string): Observable<any> {
-    const url = `${this.urlResource}/${id}?token=${this.userService.token}`;
+    const url = `${this.urlResource}/${id}`;
     return this.http.delete(url).pipe(map((res: any) => res));
   }
 }

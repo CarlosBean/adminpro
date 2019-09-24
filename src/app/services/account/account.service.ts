@@ -15,7 +15,6 @@ import { Account } from 'src/app/models/account.model';
 export class AccountService {
 
   helper = new JwtHelperService();
-  urlResource = `${API_URL}/user`;
   token: string;
   user: IUser;
   private authenticationState = new Subject<any>();
@@ -53,10 +52,12 @@ export class AccountService {
     localStorage.setItem('token', token);
     this.token = token;
     this.patchUser(this.helper.decodeToken(token).user);
+    console.log('patched user ', this.user);
     this.authenticationState.next(this.user);
   }
 
   patchUser(data: IUser) {
+    console.log('data token', data);
     this.user = this.user || new User('', '');
     this.user.name = data.name;
     this.user.email = data.email;
@@ -89,16 +90,13 @@ export class AccountService {
       map((res: any) => {
         this.saveStorage(res.data.token);
         return true;
-      }),
-      catchError((err: any) => {
-        Swal.fire('Error on Login', err.error.message, 'error');
-        return new Observable<any>();
       })
     );
   }
 
   hasAnyAuthority(authorities: string[]): boolean {
-    return !this.user || !this.user.role ? false : authorities.includes(this.user.role);
+    return this.user && this.user.role ?
+      authorities.includes(this.user.role) : false;
   }
 
   getAuthenticationState(): Observable<any> {
