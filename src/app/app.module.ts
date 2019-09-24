@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { NopagefoundComponent } from './shared/layouts/nopagefound/nopagefound.component';
 import { RegisterComponent } from './login/register.component';
 import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
+import { ErrorInterceptor } from './services/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { JwtInterceptor } from './services/interceptors/jwt.interceptor';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
